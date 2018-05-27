@@ -773,8 +773,8 @@ static void QSpyRecord_processUser(QSpyRecord * const me) {
             }
             case QS_STR_T: {
                 s = QSpyRecord_getStr(me);
-                SNPRINTF_APPEND(s);
-                FPRINF_MATFILE(s);
+                SNPRINTF_APPEND("%s", s);
+                FPRINF_MATFILE("%s", s);
                 break;
             }
             case QS_MEM_T: {
@@ -2256,7 +2256,7 @@ void QSPY_parse(uint8_t const *buf, uint32_t nBytes) {
 
 /*..........................................................................*/
 void QSPY_setExternDict(char const *dictName) {
-    SNPRINTF_S(l_dictFileName, sizeof(l_dictFileName), dictName);
+    SNPRINTF_S(l_dictFileName, sizeof(l_dictFileName), "%s", dictName);
 }
 /*..........................................................................*/
 QSpyStatus QSPY_writeDict(void) {
@@ -2374,7 +2374,7 @@ QSpyStatus QSPY_readDict(void) {
                (unsigned)l_config.tstamp[0]);
     }
     else { /* manual dictionaries */
-        SNPRINTF_S(name, sizeof(name), l_dictFileName);
+        SNPRINTF_S(name, sizeof(name), "%s", l_dictFileName);
     }
 
     FOPEN_S(dictFile, name, "r");
